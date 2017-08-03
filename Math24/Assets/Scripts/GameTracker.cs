@@ -77,7 +77,12 @@ public class GameTracker : MonoBehaviour {
         if (isSetup)
         {
             if (Input.GetKeyDown(KeyCode.Space)) isPause = !isPause;
-            if(!isPause) UpdateTimer();
+            else if (Input.GetKeyDown(KeyCode.Return))
+            {
+                currentState = STATE_READY;
+                isSetup = false;
+            }
+            if (!isPause) UpdateTimer();
             if (currentTime <= 0)
             {
                 currentState = STATE_WAITING;
