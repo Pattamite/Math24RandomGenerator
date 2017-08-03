@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 32cfa67babbd76b4db592a6f8a4474e1
-timeCreated: 1501766242
+guid: 00e69d09f69f8fd49af0dbba6203c088
+timeCreated: 1501772302
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Open 24 Display St
+  fontName: Gunplay
   fontNames:
-  - Open 24 Display St
+  - Gunplay
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

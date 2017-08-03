@@ -12,12 +12,17 @@ public class GameTracker : MonoBehaviour {
     private int currentState;
     private bool isSetup;
     private bool isPause;
+    private Image sliderColor;
 
     public Text timerIntText;
     public Text timerFloatText;
+    public Text timerDotText;
     public Number number;
     public Slider slider;
-
+    public Text header;
+    public Color highColor;
+    public Color midColor;
+    public Color lowColor;
 
     public float readyTime = 5;
     public float playTime = 60;
@@ -26,6 +31,7 @@ public class GameTracker : MonoBehaviour {
     void Start () {
         currentState = STATE_WAITING;
         currentTime = 0;
+        sliderColor = slider.transform.Find("Fill Area").transform.Find("Fill").GetComponent<Image>();
     }
 	
 	// Update is called once per frame
@@ -58,6 +64,8 @@ public class GameTracker : MonoBehaviour {
         }
         else
         {
+            sliderColor.color = lowColor;
+            header.text = "Ready";
             currentTime = readyTime;
             isSetup = true;
             isPause = false;
@@ -78,6 +86,7 @@ public class GameTracker : MonoBehaviour {
         }
         else
         {
+            header.text = "Make 24";
             number.NewRandom();
             currentTime = playTime;
             isSetup = true;
@@ -88,9 +97,33 @@ public class GameTracker : MonoBehaviour {
     {
         currentTime -= Time.deltaTime;
         if (currentTime < 0f) currentTime = 0f;
+
         timerIntText.text = Mathf.Floor(currentTime).ToString("F0");
         timerFloatText.text = ((int)((currentTime % 1f) * 100)).ToString("00");
+
         if (currentState == STATE_READY) slider.value = currentTime / readyTime;
         else if (currentState == STATE_PLAYING) slider.value = currentTime / playTime;
+
+        if (slider.value >= 0.5)
+        {
+            timerIntText.color = highColor;
+            timerFloatText.color = highColor;
+            timerDotText.color = highColor;
+            sliderColor.color = highColor;
+        }
+        else if (slider.value >= 0.25)
+        {
+            timerIntText.color = midColor;
+            timerFloatText.color = midColor;
+            timerDotText.color = midColor;
+            sliderColor.color = midColor;
+        }
+        else
+        {
+            timerIntText.color = lowColor;
+            timerFloatText.color = lowColor;
+            timerDotText.color = lowColor;
+            sliderColor.color = lowColor;
+        }
     }
 }
