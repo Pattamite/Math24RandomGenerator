@@ -39,6 +39,8 @@ public class GameTracker : MonoBehaviour {
         if (currentState == STATE_WAITING) Waiting();
         else if (currentState == STATE_READY) Ready();
         else if (currentState == STATE_PLAYING) Playing();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
 
     private void Waiting()
